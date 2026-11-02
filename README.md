@@ -1,8 +1,8 @@
-# Horichan Sentinel
+# Horicane Sentinel
 
-**The secure management dashboard for Horichan**, by Horizon Forge Studios.
+**The secure management dashboard for Horicane**, by Horizon Forge Studios.
 
-Horichan Sentinel is a separate web application for managing Horichan Discord servers. This repository contains the dashboard UI and a server-side authentication/API foundation. It does not contain the Horichan bot itself.
+Horicane Sentinel is a separate web application for managing Horicane Discord servers. This repository contains the dashboard UI and a server-side authentication/API foundation. It does not contain the Horichan bot itself.
 
 ## Current starter capabilities
 
@@ -49,9 +49,9 @@ See `.env.example`. Never commit `.env`, OAuth client secrets, session secrets, 
 
 The browser must never receive a Discord client secret, bot token, session secret, or private service credential. Do not call privileged bot APIs directly from the browser.
 
-## Horichan API integration
+## Horicane API integration
 
-Horichan exposes a versioned, read-only API for health and server overviews. Configure `HORICHAN_API_BASE_URL` and a strong `HORICHAN_API_TOKEN` in Sentinel; configure the same token in the bot. The API should be reachable only through localhost or a private HTTPS connection. The adapter remains fail-closed when configuration is missing. Sentinel rechecks the user's current Discord permissions for every guild overview request, and Horichan independently verifies its own guild access. The browser never receives the service token. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the v1 contract.
+Horicane exposes a versioned, read-only API for health and server overviews. Configure `HORICHAN_API_BASE_URL` and a strong `HORICHAN_API_TOKEN` in Sentinel; configure the same token in the bot. The API should be reachable only through localhost or a private HTTPS connection. The adapter remains fail-closed when configuration is missing. Sentinel rechecks the user's current Discord permissions for every guild overview request, and Horichan independently verifies its own guild access. The browser never receives the service token. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the v1 contract.
 
 ## Scripts
 
