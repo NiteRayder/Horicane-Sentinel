@@ -17,7 +17,7 @@ function Icon({ name, size = 18 }) {
 function Brand({ compact = false }) {
   return <div className="brand">
     <div className="brand-mark"><Icon name="shield" size={22} /></div>
-    {!compact && <div className="brand-copy"><strong>HORICHAN<span> SENTINEL</span></strong><small>HORIZON FORGE STUDIOS</small></div>}
+    {!compact && <div className="brand-copy"><strong>HORICANE<span> SENTINEL</span></strong><small>HORIZON FORGE STUDIOS</small></div>}
   </div>;
 }
 
@@ -81,7 +81,7 @@ export default function App() {
   if (!user) return <main className="landing">
     <header className="landing-nav"><Brand /><span className="secure-label"><Icon name="lock" size={14} /> SECURE ACCESS</span></header>
     <section className="hero">
-      <div className="eyebrow"><span className="status-dot" /> HORICHAN MANAGEMENT SUITE</div>
+      <div className="eyebrow"><span className="status-dot" /> HORICANE MANAGEMENT SUITE</div>
       <h1>Control your<br /><span>community.</span></h1>
       <p className="hero-copy">A clear, secure workspace for managing your Horichan-powered Discord servers. Everything important, without the clutter.</p>
       <a className="primary-button" href="/auth/discord"><DiscordMark /> Continue with Discord <Icon name="arrow" size={17} /></a>
@@ -92,7 +92,7 @@ export default function App() {
       <article className="feature-card"><div className="feature-icon"><Icon name="shield" /></div><h3>Permission-aware</h3><p>Server access is checked on the backend, not trusted to the browser.</p></article>
       <article className="feature-card"><div className="feature-icon"><Icon name="settings" /></div><h3>Built to integrate</h3><p>A separate dashboard foundation designed to connect to Horichan's API.</p></article>
     </section>
-    <footer className="page-footer"><span>HORICHAN SENTINEL</span><span>HORIZON FORGE STUDIOS © {new Date().getFullYear()}</span></footer>
+    <footer className="page-footer"><span>HORICANE SENTINEL</span><span>HORIZON FORGE STUDIOS © {new Date().getFullYear()}</span></footer>
   </main>;
 
   return <div className="app-shell">
@@ -107,11 +107,11 @@ export default function App() {
       </div>
     </aside>
     <main className="dashboard-main">
-      <header className="topbar"><div><div className="breadcrumb">HORICHAN SENTINEL <span>/</span> OVERVIEW</div><h1>Dashboard</h1></div>
+      <header className="topbar"><div><div className="breadcrumb">HORICANE SENTINEL <span>/</span> OVERVIEW</div><h1>Dashboard</h1></div>
         <div className="profile"><div className="avatar">{user.avatar ? <img src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`} alt="" /> : user.username.slice(0, 1).toUpperCase()}</div><div><strong>{user.globalName || user.username}</strong><small>Discord account</small></div></div>
       </header>
       {error && <div className="notice"><span>{error}</span><button onClick={() => setError('')} aria-label="Dismiss">×</button></div>}
-      <section className="welcome-panel"><div><div className="eyebrow">YOUR WORKSPACE</div><h2>Welcome back, {user.globalName || user.username}.</h2><p>Select a server to view its Horichan integration status.</p></div><div className="welcome-mark"><Icon name="shield" size={38} /></div></section>
+      <section className="welcome-panel"><div><div className="eyebrow">YOUR WORKSPACE</div><h2>Welcome back, {user.globalName || user.username}.</h2><p>Select a server to view its Horicane integration status.</p></div><div className="welcome-mark"><Icon name="shield" size={38} /></div></section>
       <div className="section-heading"><div><h2>Your servers</h2><p>Servers where your Discord account has management permissions.</p></div><span className="count-pill">{guilds.length} FOUND</span></div>
       {guilds.length ? <div className="guild-grid">{guilds.map((guild) => <button className={`guild-card ${selected?.id === guild.id ? 'selected' : ''}`} key={guild.id} onClick={() => chooseGuild(guild)}>
         <div className="guild-avatar">{guild.icon ? <img src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=96`} alt="" /> : guild.name.slice(0, 1).toUpperCase()}</div>
@@ -120,7 +120,7 @@ export default function App() {
       {selected && <section className="server-panel"><div className="section-heading"><div><h2>{selected.name}</h2><p>Integration status</p></div><span className="count-pill">SERVER ID · {selected.id}</span></div>
         {!overview ? <p className="muted">Loading server overview…</p> : <div className="integration-status"><div className="status-symbol"><Icon name="shield" size={22} /></div><div><strong>{!overview.integrationConfigured ? 'Waiting for Horichan connection' : overview.botConnected ? 'Horichan is in this server' : 'Horichan is unavailable'}</strong><p>{overview.message || 'Server access is verified. Management modules will remain unavailable until their API endpoints are implemented.'}</p></div><span className={overview.botConnected ? 'pill-ready' : 'pill-pending'}>{!overview.integrationConfigured ? 'PENDING' : overview.botConnected ? 'BOT ONLINE' : 'BOT OFFLINE'}</span></div>}
       </section>}
-      <footer className="dashboard-footer"><span>HORICHAN SENTINEL <b>·</b> HORIZON FORGE STUDIOS</span><span><span className="status-dot" /> Secure session</span></footer>
+      <footer className="dashboard-footer"><span>HORICANE SENTINEL <b>·</b> HORIZON FORGE STUDIOS</span><span><span className="status-dot" /> Secure session</span></footer>
     </main>
   </div>;
 }
