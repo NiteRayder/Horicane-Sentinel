@@ -38,7 +38,7 @@ app.use(rateLimit({
 }));
 
 app.use(session({
-  name: 'horichan.sentinel.sid',
+  name: 'horicane.sentinel.sid',
   secret: config.SESSION_SECRET || 'local-development-session-secret-change-me',
   resave: false,
   saveUninitialized: false,
@@ -61,7 +61,7 @@ app.post('/logout', (req, res, next) => {
     if (logoutError) return next(logoutError);
     req.session.destroy((sessionError) => {
       if (sessionError) return next(sessionError);
-      res.clearCookie('horichan.sentinel.sid', { httpOnly: true, sameSite: 'lax', secure: isProduction });
+      res.clearCookie('horicane.sentinel.sid', { httpOnly: true, sameSite: 'lax', secure: isProduction });
       return res.status(204).end();
     });
   });
@@ -85,7 +85,7 @@ app.use((error, _req, res, _next) => {
 });
 
 app.listen(config.PORT, () => {
-  console.log(`Horichan Sentinel server listening on port ${config.PORT}`);
+  console.log(`Horicane Sentinel server listening on port ${config.PORT}`);
 });
 
 export { app };

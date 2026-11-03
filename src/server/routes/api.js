@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { requireAuth } from '../middleware/require-auth.js';
 import { fetchManageableGuilds } from '../integrations/discord.js';
-import { isHorichanApiConfigured, horichanRequest } from '../integrations/horichan.js';
+import { isHoricaneApiConfigured, horicaneRequest } from '../integrations/horicane.js';
 
 export const apiRouter = Router();
 
@@ -28,26 +28,26 @@ apiRouter.get('/guilds/:guildId/overview', requireAuth, async (req, res, next) =
     const guild = guilds.find((item) => item.id === req.params.guildId);
     if (!guild) return res.status(403).json({ error: 'guild_access_denied' });
 
-    if (!isHorichanApiConfigured()) {
+    if (!isHoricaneApiConfigured()) {
       return res.json({
         guild,
         botConnected: null,
         integrationConfigured: false,
-        message: 'Horichan API integration is not configured yet.',
+        message: 'Horicane API integration is not configured yet.',
       });
     }
 
     // Sentinel has checked the signed-in user's current Discord permissions.
-    // Horichan independently verifies its own access with the bot credentials.
-    const overview = await horichanRequest(`/api/v1/guilds/${encodeURIComponent(guild.id)}/overview`);
+    // Horicane independently verifies its own access with the bot credentials.
+    const overview = await horicaneRequest(`/api/v1/guilds/${encodeURIComponent(guild.id)}/overview`);
     const botConnected = overview?.bot?.connected === true;
     return res.json({
       guild,
       botConnected,
       integrationConfigured: true,
       message: botConnected
-        ? `Horichan is connected to ${guild.name}.`
-        : `Horichan could not access ${guild.name} when the overview was requested.`,
+        ? `Horicane is connected to ${guild.name}.`
+        : `Horicane could not access ${guild.name} when the overview was requested.`,
       overview,
     });
   } catch (error) {
