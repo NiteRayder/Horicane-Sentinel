@@ -1,1 +1,2 @@
-// Legacy compatibility wrapper. The active tests live in ./horicane.test.js.
+// Compatibility placeholder for the retired integration test path.
+export {};

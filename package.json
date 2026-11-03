@@ -1,9 +1,9 @@
 {
-  "name": "horichan-sentinel",
+  "name": "horicane-sentinel",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Secure management dashboard for Horichan by Horizon Forge Studios",
+  "description": "Secure management dashboard for Horicane by Horizon Forge Studios",
   "engines": {
     "node": ">=22.12.0"
   },

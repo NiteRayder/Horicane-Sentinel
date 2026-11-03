@@ -1,2 +1,2 @@
-// Legacy compatibility wrapper. The active implementation lives in ./horicane.js.
+// Compatibility re-export; new code should import the canonical integration module.
 export * from './horicane.js';

@@ -54,6 +54,8 @@ app.use(passport.session());
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.use('/auth', authRouter);
+// The versioned API is the supported surface. Keep /api temporarily for existing clients.
+app.use('/api/v1', apiRouter);
 app.use('/api', apiRouter);
 
 app.post('/logout', (req, res, next) => {

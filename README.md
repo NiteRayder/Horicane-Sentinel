@@ -11,9 +11,10 @@ Horicane Sentinel is a separate web application for managing Horicane Discord se
 - Session-backed identity and logout
 - Server list fetched from Discord on the server, filtered to servers where the signed-in user has Manage Server or Administrator permissions
 - Security headers, rate limiting, environment validation, linting, and tests
-- A clearly isolated integration boundary for connecting to Horicane's future/available management API
+- A clearly isolated integration boundary for connecting to Horicane's management API
+- A versioned, session-authenticated dashboard API with capability discovery and an OpenAPI document
 
-**Important:** This is a foundation, not a finished production dashboard. Server-management actions, bot-presence verification, moderation cases, audit-log streaming, role/channel editing, and automation controls must not be considered functional until connected to a trusted Horicane API and tested end to end.
+**Important:** This is a foundation, not a finished production dashboard. Server-management actions, moderation cases, audit-log streaming, role/channel editing, and automation controls are not implemented. Do not treat this read-only API as providing those actions.
 
 ## Requirements
 
@@ -45,13 +46,15 @@ See `.env.example`. Never commit `.env`, OAuth client secrets, session secrets, 
 
 - `src/server/`: Express app, Discord OAuth, session handling, and API routes
 - `src/client/`: React + Vite dashboard
-- `src/server/integrations/horicane.js`: server-only adapter boundary for the bot's management API
+- `src/server/integrations/horicane.js`: server-only adapter boundary for Horicane's management API
 
 The browser must never receive a Discord client secret, bot token, session secret, or private service credential. Do not call privileged bot APIs directly from the browser.
 
-## Horicane API integration
+## API
 
-Horicane exposes a versioned, read-only API for health and server overviews. Configure `HORICANE_API_BASE_URL` and a strong `HORICANE_API_TOKEN` in Sentinel; configure the same token in the bot. The API should be reachable only through localhost or a private HTTPS connection. The adapter remains fail-closed when configuration is missing. Sentinel rechecks the user's current Discord permissions for every guild overview request, and Horicane independently verifies its own guild access. The browser never receives the service token. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the v1 contract.
+Use the versioned `/api/v1` API for new clients. It provides health and capability discovery, an OpenAPI document, signed-in user information, manageable guilds, and read-only guild overviews. See [docs/API.md](docs/API.md) for the contract and extension guidance. `/api` remains temporarily available as a compatibility alias.
+
+Configure `HORICANE_API_BASE_URL` and a strong `HORICANE_API_TOKEN` in Sentinel; configure the same token in the bot. The API should be reachable only through localhost or a private HTTPS connection. The adapter remains fail-closed when configuration is missing. Sentinel rechecks the user's current Discord permissions for every guild overview request, and Horicane independently verifies its own guild access. The browser never receives the service token. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the bot API contract.
 
 ## Scripts
 
